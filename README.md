@@ -1,25 +1,39 @@
 # 📱 SMART TODO - Android Native App
 
-> Ứng dụng quản lý công việc thông minh được xây dựng bằng **Java + XML**, kiến trúc **MVVM**, tích hợp **Firebase** và **Material Design 3**.
+> Ứng dụng quản lý công việc thông minh được xây dựng bằng **Java + XML**, kiến trúc **MVVM**, tích hợp **Firebase**, **Cloudinary Storage**, **App Widgets** và **Material Design 3**.
 
 ---
 
-## 🚀 Tính năng
+## 👥 Phân công công việc nhóm (4 thành viên)
+
+> 📖 *Tài liệu phân công chi tiết và cấu trúc file phụ trách xem tại: [PHAN_CONG_CONG_VIEC.md](file:///c:/Users/OS/StudioProjects/todolist/PHAN_CONG_CONG_VIEC.md)*
+
+| STT | Thành viên | Vai trò | Phụ trách chính | Màn hình / Components |
+|:---:|:---|:---|:---|:---|
+| **1** | **Thành viên 1** | **Leader / Core Task Manager** | • Xây dựng vòng đời Công việc (Task CRUD đầy đủ)<br>• Tìm kiếm từ khóa Real-time & Bộ lọc độ ưu tiên / danh mục<br>• Tối ưu cơ chế Optimistic UI updates & DiffUtil | `MainActivity`<br>`AddTaskActivity`<br>`EditTaskActivity` |
+| **2** | **Thành viên 2** | **Auth, Profile & Storage** | • Hệ thống Đăng nhập & Đăng ký (`Firebase Auth`)<br>• Chế độ Sáng/Tối (Light/Dark Mode)<br>• Hồ sơ cá nhân (`ProfileActivity`) & Cloudinary Upload | `LoginActivity`<br>`RegisterActivity`<br>`ProfileActivity` |
+| **3** | **Thành viên 3** | **Category & Analytics** | • Quản lý Danh mục công việc & Bộ chọn màu (Color Picker)<br>• Tự động khởi tạo danh mục mặc định cho user mới<br>• Hệ thống Thống kê & Biểu đồ 6 tháng (`MPAndroidChart`) | `CategoryActivity`<br>`StatisticsActivity` |
+| **4** | **Thành viên 4** | **Alarms, Notifications & Widget** | • Đặt lịch báo thức nhắc nhở chính xác (`AlarmManager`)<br>• Bắn thông báo hệ thống & Khôi phục lịch sau khi reboot<br>• Phát triển App Widget màn hình chính tương tác 3 task | `TaskWidgetProvider`<br>`System Notifications` |
+
+---
+
+## 🚀 Tính năng nổi bật
 
 | Module | Tính năng |
 |--------|-----------|
-| 🔐 Auth | Đăng ký, Đăng nhập, Quên mật khẩu, Auto-login |
-| 📋 Task | CRUD đầy đủ, Upload ảnh (Camera/Gallery), Priority, Deadline |
-| 📁 Category | CRUD Category với color picker |
-| 🔔 Reminder | AlarmManager + BroadcastReceiver, tự đặt lại sau reboot |
-| 📊 Statistics | Pie Chart (category), Bar Chart (monthly), MPAndroidChart |
-| 🖼️ Widget | Home screen widget, task hôm nay, nút Refresh |
-| 👤 Profile | Xem thông tin, đổi avatar, thống kê nhanh |
-| 🔄 Multi-device | Firestore real-time sync tự động |
+| 🔐 Auth | Đăng ký, Đăng nhập, Tự động lưu phiên đăng nhập (Auto-login) |
+| 📋 Task | CRUD đầy đủ, Upload ảnh (Camera/Gallery), Độ ưu tiên, Hạn chót & Nhắc nhở |
+| 📁 Category | CRUD Category với bộ chọn màu sắc (Color Picker) |
+| 🔔 Reminder | AlarmManager + BroadcastReceiver, tự động đặt lại lịch báo thức sau khi reboot |
+| 📊 Statistics | Pie Chart (theo category), Bar Chart (phân tích 6 tháng gần nhất), MPAndroidChart |
+| 🖼️ Widget | Home screen widget chuẩn Slate style, hiển thị 3 task gần hạn & tích hoàn thành tại chỗ |
+| 🌙 Theme | Chuyển đổi giao diện Sáng / Tối (Light Mode / Dark Mode) linh hoạt |
+| 👤 Profile | Xem thông tin tài khoản, đổi tên hiển thị, chuyển đổi giao diện |
+| 🔄 Multi-device | Firestore real-time sync tự động trên nhiều thiết bị |
 
 ---
 
-## ⚙️ Cấu hình Firebase
+## ⚙️ Cấu hình Firebase & Cloudinary
 
 ### Bước 1: Tạo Project Firebase
 
@@ -54,7 +68,7 @@ Thêm SHA-1 vào Firebase Console:
 1. Trong Firebase Console → Project Settings → Download `google-services.json`
 2. Copy file vào thư mục: `app/google-services.json`
 
-```
+```text
 todolist/
 ├── app/
 │   ├── google-services.json  ← Đặt file ở đây
@@ -73,7 +87,7 @@ todolist/
 - Chọn location gần nhất
 
 **Firestore Security Rules (cho production):**
-```
+```javascript
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
@@ -99,10 +113,7 @@ service cloud.firestore {
 }
 ```
 
-#### Firebase Storage
-- Đã được gỡ bỏ và thay thế bằng **Cloudinary** để hỗ trợ sử dụng hoàn toàn miễn phí mà không cần nhập thẻ Visa.
-
-### Bước 6: Cấu hình Cloudinary (Lưu trữ ảnh)
+### Bước 6: Cấu hình Cloudinary (Lưu trữ ảnh đám mây)
 
 1. Đăng ký tài khoản miễn phí tại [cloudinary.com](https://cloudinary.com/)
 2. Lấy **Cloud Name** trên Dashboard.
@@ -117,10 +128,10 @@ service cloud.firestore {
 ## 🏃‍♂️ Chạy Project
 
 ### Yêu cầu
-- Android Studio Hedgehog hoặc mới hơn
-- JDK 11+
+- Android Studio Hedgehog (2023.1.1) hoặc mới hơn
+- JDK 17+
 - Android SDK 26+
-- Internet connection
+- Kết nối Internet
 
 ### Các bước
 
@@ -130,7 +141,7 @@ service cloud.firestore {
 
 # 2. Đảm bảo đã có google-services.json trong app/
 
-# 3. Sync Gradle (Android Studio tự động hoặc click Sync Now)
+# 3. Sync Gradle
 
 # 4. Chạy app
 # Run → Run 'app' hoặc Shift+F10
@@ -154,20 +165,19 @@ APK output: `app/build/outputs/apk/debug/app-debug.apk`
 
 ## 📁 Cấu trúc Project
 
-```
+```text
 app/src/main/java/com/smarttodo/
 ├── activity/
 │   ├── SplashActivity.java        # Màn hình splash
 │   ├── LoginActivity.java         # Đăng nhập
 │   ├── RegisterActivity.java      # Đăng ký
-│   ├── ForgotPasswordActivity.java
 │   ├── MainActivity.java          # Danh sách task chính
 │   ├── AddTaskActivity.java       # Thêm task
 │   ├── EditTaskActivity.java      # Sửa task
 │   ├── TaskDetailActivity.java    # Chi tiết task
 │   ├── CategoryActivity.java      # Quản lý category
-│   ├── ProfileActivity.java       # Hồ sơ user
-│   └── StatisticsActivity.java    # Thống kê
+│   ├── ProfileActivity.java       # Hồ sơ user & Đổi chế độ Sáng/Tối
+│   └── StatisticsActivity.java    # Thống kê & Biểu đồ 6 tháng
 │
 ├── adapter/
 │   ├── TaskAdapter.java           # RecyclerView adapter cho task
@@ -182,7 +192,7 @@ app/src/main/java/com/smarttodo/
 │   ├── AuthRepository.java        # Firebase Auth operations
 │   ├── TaskRepository.java        # Firestore task CRUD
 │   ├── CategoryRepository.java    # Firestore category CRUD
-│   ├── StorageRepository.java     # Firebase Storage upload
+│   ├── StorageRepository.java     # Cloudinary upload
 │   └── UserRepository.java        # User profile operations
 │
 ├── viewmodel/
@@ -203,7 +213,7 @@ app/src/main/java/com/smarttodo/
 │   └── BootReceiver.java          # Re-schedule alarms after boot
 │
 ├── widget/
-│   └── TaskWidgetProvider.java    # Home screen widget
+│   └── TaskWidgetProvider.java    # Home screen widget tương tác 3 task
 │
 ├── listener/
 │   ├── OnCompleteListener.java    # Generic callback
@@ -213,6 +223,7 @@ app/src/main/java/com/smarttodo/
 └── utils/
     ├── Constants.java             # App constants
     ├── DateUtils.java             # Date formatting & comparison
+    ├── ThemeUtils.java            # Light/Dark mode manager
     ├── ValidationUtils.java       # Input validation
     └── PreferenceManager.java     # SharedPreferences wrapper
 ```
@@ -260,7 +271,7 @@ work-runtime:2.9.1
 
 ## 🔥 Firestore Collections
 
-```
+```text
 users/
   {uid}/
     name: String
@@ -294,14 +305,14 @@ tasks/
 
 ## ⚡ Kiến trúc MVVM
 
-```
+```text
 View (Activity/XML)
     ↕ observe LiveData
 ViewModel
     ↕ calls
 Repository
     ↕ reads/writes
-Firebase (Firestore/Auth/Storage)
+Firebase / Cloudinary / SharedPreferences
 ```
 
 ---
@@ -309,25 +320,19 @@ Firebase (Firestore/Auth/Storage)
 ## 📝 Ghi chú quan trọng
 
 > [!IMPORTANT]
-> 1. **google-services.json**: Phải có file này trong `app/` trước khi build
-> 2. **Internet**: App yêu cầu kết nối internet để sử dụng Firebase
-> 3. **Test mode**: Firestore Rules mặc định là test mode - hãy cập nhật trước khi production
-
-> [!WARNING]
-> Permissions camera trên Android 13+ cần request runtime permission.
-> App đã xử lý nhưng cần test trên thiết bị thật.
+> 1. **google-services.json**: Phải có file này trong `app/` trước khi build.
+> 2. **Internet**: App yêu cầu kết nối internet để sử dụng Firebase & Cloudinary.
+> 3. **Test mode**: Firestore Rules mặc định là test mode - hãy cập nhật trước khi production.
 
 ---
 
 ## 🎨 Design System
 
-- **Primary Color**: `#4CAF50` (Green)
-- **Background**: `#121212` (Dark)
-- **Surface**: `#1E1E1E`
-- **Card**: `#252525`
-- **Font**: Inter (system default fallback)
-- **Priority**: Red (High), Orange (Medium), Green (Low)
+- **Primary Color**: `#005BBF` / `#4CAF50`
+- **Background**: Light Mode (`#FAF9FD`), Dark Mode (`#121212`)
+- **Widget Style**: Slate 800 (`#1E293B`) với viền `#334155` và bo góc 20dp
+- **Priority**: Đỏ (High), Cam (Medium), Xanh lá (Low)
 
 ---
 
-*Được xây dựng bởi Smart TODO Team - 2024*
+*Được xây dựng bởi Smart TODO Team - 2026*
