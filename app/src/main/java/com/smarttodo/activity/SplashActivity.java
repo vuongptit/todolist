@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.smarttodo.databinding.ActivitySplashBinding;
 import com.smarttodo.firebase.FirebaseManager;
 import com.smarttodo.notification.NotificationHelper;
+import com.smarttodo.utils.ThemeUtils;
 
 /**
  * SplashActivity - màn hình khởi động.
@@ -26,6 +27,7 @@ public class SplashActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ThemeUtils.applyTheme(this);
         super.onCreate(savedInstanceState);
         binding = ActivitySplashBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());

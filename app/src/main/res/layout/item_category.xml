@@ -6,9 +6,11 @@
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="16dp"
     android:layout_marginVertical="6dp"
-    app:cardBackgroundColor="#252525"
+    app:cardBackgroundColor="@color/surface_container_lowest"
     app:cardCornerRadius="12dp"
-    app:cardElevation="2dp">
+    app:cardElevation="2dp"
+    app:strokeColor="@color/outline_variant"
+    app:strokeWidth="1dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginHorizontal="12dp"
-            android:textColor="@color/white"
+            android:textColor="@color/on_surface"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -41,10 +43,10 @@
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:background="@drawable/bg_circle"
-            android:backgroundTint="#1A4CAF50"
+            android:backgroundTint="@color/surface_container"
             android:padding="6dp"
             android:src="@drawable/ic_edit"
-            android:tint="#4CAF50"
+            android:tint="@color/primary"
             android:contentDescription="Sửa danh mục" />
 
         <!-- Delete Button -->

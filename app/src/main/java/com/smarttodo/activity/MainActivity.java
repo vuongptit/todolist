@@ -275,9 +275,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Load tên user cho greeting
+     * Load tên user & Ngày tháng hiện tại cho greeting
      */
     private void loadUserGreeting() {
+        // Full day date month year in Vietnamese
+        try {
+            java.util.Calendar cal = java.util.Calendar.getInstance();
+            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("EEEE, dd/MM/yyyy", new java.util.Locale("vi", "VN"));
+            String formattedDate = sdf.format(cal.getTime());
+            if (formattedDate != null && !formattedDate.isEmpty()) {
+                formattedDate = Character.toUpperCase(formattedDate.charAt(0)) + formattedDate.substring(1);
+            }
+            if (binding.tvCurrentDate != null) {
+                binding.tvCurrentDate.setText("📅 " + formattedDate);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         com.google.firebase.auth.FirebaseUser user = FirebaseManager.getInstance().getCurrentUser();
         if (user != null) {
             String displayName = user.getDisplayName();

@@ -65,11 +65,6 @@ public class LoginActivity extends AppCompatActivity {
         binding.tvRegister.setOnClickListener(v -> {
             startActivity(new Intent(this, RegisterActivity.class));
         });
-
-        // Forgot password link
-        binding.tvForgotPassword.setOnClickListener(v -> {
-            startActivity(new Intent(this, ForgotPasswordActivity.class));
-        });
     }
 
     /**

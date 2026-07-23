@@ -282,6 +282,7 @@ public class AddTaskActivity extends AppCompatActivity {
     private void handleImageSelected(Uri imageUri) {
         // Hiển thị preview
         binding.ivTaskImage.setVisibility(View.VISIBLE);
+        binding.ivTaskImage.clearColorFilter();
         binding.ivTaskImage.setImageURI(imageUri);
 
         // Upload lên Firebase / Cloudinary

@@ -169,10 +169,11 @@
         <receiver
             android:name=".widget.TaskWidgetProvider"
             android:exported="true"
-            android:label="Smart TODO Widget">
+            android:label="Smart TODO">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-                <action android:name="com.smarttodo.WIDGET_REFRESH" />
+                <action android:name="com.smarttodo.ACTION_WIDGET_REFRESH" />
+                <action android:name="com.smarttodo.ACTION_TOGGLE_WIDGET_TASK" />
             </intent-filter>
             <meta-data
                 android:name="android.appwidget.provider"

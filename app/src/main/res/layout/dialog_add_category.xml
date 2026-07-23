@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="20dp"
-    android:background="#252525">
+    android:background="@color/surface_container_lowest">
 
     <!-- Name Field -->
     <com.google.android.material.textfield.TextInputLayout
@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textCapWords"
-            android:textColor="#FFFFFF" />
+            android:textColor="@color/on_surface" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Color Picker -->
@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Chọn màu sắc"
-        android:textColor="#AAAAAA"
+        android:textColor="@color/on_surface_variant"
         android:textSize="13sp" />
 
     <LinearLayout

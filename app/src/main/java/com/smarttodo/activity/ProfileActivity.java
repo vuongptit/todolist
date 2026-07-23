@@ -21,6 +21,7 @@ import com.smarttodo.R;
 import com.smarttodo.databinding.ActivityProfileBinding;
 import com.smarttodo.firebase.FirebaseManager;
 import com.smarttodo.utils.PreferenceManager;
+import com.smarttodo.utils.ThemeUtils;
 import com.smarttodo.viewmodel.ProfileViewModel;
 import com.smarttodo.viewmodel.StatisticsViewModel;
 
@@ -258,6 +259,24 @@ public class ProfileActivity extends AppCompatActivity {
 
         if (binding.btnLogout != null) {
             binding.btnLogout.setOnClickListener(v -> logout());
+        }
+
+        // Theme Switch listener
+        if (binding.switchDarkMode != null) {
+            boolean isDark = ThemeUtils.isDarkMode(this);
+            binding.switchDarkMode.setChecked(isDark);
+            updateThemeUI(isDark);
+
+            binding.switchDarkMode.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                updateThemeUI(isChecked);
+                ThemeUtils.setDarkMode(this, isChecked);
+            });
+        }
+    }
+
+    private void updateThemeUI(boolean isDark) {
+        if (binding.tvThemeTitle != null) {
+            binding.tvThemeTitle.setText(isDark ? "☀️ Chế độ sáng (Light Mode)" : "🌙 Chế độ tối (Dark Mode)");
         }
     }
 

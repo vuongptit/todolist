@@ -76,11 +76,16 @@ public class StatisticsActivity extends AppCompatActivity {
 
         // Bar Chart setup
         binding.barChart.getDescription().setEnabled(false);
-        binding.barChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
-        binding.barChart.getXAxis().setTextColor(Color.parseColor("#AAAAAA"));
-        binding.barChart.getAxisLeft().setTextColor(Color.parseColor("#AAAAAA"));
+        XAxis xAxis = binding.barChart.getXAxis();
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setTextColor(Color.parseColor("#94A3B8"));
+        xAxis.setGranularity(1f);
+        xAxis.setGranularityEnabled(true);
+        xAxis.setDrawGridLines(false);
+
+        binding.barChart.getAxisLeft().setTextColor(Color.parseColor("#94A3B8"));
         binding.barChart.getAxisRight().setEnabled(false);
-        binding.barChart.getLegend().setTextColor(Color.WHITE);
+        binding.barChart.getLegend().setTextColor(Color.parseColor("#94A3B8"));
         binding.barChart.setGridBackgroundColor(Color.TRANSPARENT);
         binding.barChart.animateY(1000);
     }
@@ -151,29 +156,39 @@ public class StatisticsActivity extends AppCompatActivity {
     }
 
     /**
-     * Cập nhật Bar Chart theo tháng
+     * Cập nhật Bar Chart theo 6 tháng (5 tháng trước + tháng hiện tại)
      */
     private void updateBarChart(Map<String, Integer> byMonth) {
         List<BarEntry> entries = new ArrayList<>();
         List<String>   labels  = new ArrayList<>();
 
-        int index = 0;
-        for (Map.Entry<String, Integer> entry : byMonth.entrySet()) {
-            entries.add(new BarEntry(index++, entry.getValue()));
-            labels.add(entry.getKey());
+        java.util.Calendar cal = java.util.Calendar.getInstance();
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("MM/yyyy", java.util.Locale.getDefault());
+
+        // Lấy 6 tháng gần nhất (từ 5 tháng trước đến tháng hiện tại)
+        for (int i = 5; i >= 0; i--) {
+            java.util.Calendar temp = (java.util.Calendar) cal.clone();
+            temp.add(java.util.Calendar.MONTH, -i);
+            String monthKey = sdf.format(temp.getTime());
+
+            int count = (byMonth != null && byMonth.containsKey(monthKey)) ? byMonth.get(monthKey) : 0;
+            int index = labels.size();
+            entries.add(new BarEntry(index, count));
+            labels.add(monthKey);
         }
 
-        if (entries.isEmpty()) return;
-
-        BarDataSet dataSet = new BarDataSet(entries, "Task theo tháng");
-        dataSet.setColor(Color.parseColor("#4CAF50"));
-        dataSet.setValueTextColor(Color.WHITE);
-        dataSet.setValueTextSize(10f);
+        BarDataSet dataSet = new BarDataSet(entries, "Số công việc theo tháng");
+        dataSet.setColor(Color.parseColor("#005BBF"));
+        dataSet.setValueTextColor(Color.parseColor("#005BBF"));
+        dataSet.setValueTextSize(11f);
 
         BarData barData = new BarData(dataSet);
-        barData.setBarWidth(0.7f);
+        barData.setBarWidth(0.5f);
 
-        binding.barChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(labels));
+        XAxis xAxis = binding.barChart.getXAxis();
+        xAxis.setValueFormatter(new IndexAxisValueFormatter(labels));
+        xAxis.setLabelCount(labels.size(), false);
+
         binding.barChart.setData(barData);
         binding.barChart.invalidate();
     }

@@ -111,6 +111,7 @@ public class EditTaskActivity extends AppCompatActivity {
         // Show image if exists
         if (task.getImageUrl() != null && !task.getImageUrl().isEmpty()) {
             binding.ivTaskImage.setVisibility(View.VISIBLE);
+            binding.ivTaskImage.clearColorFilter();
             Glide.with(this).load(task.getImageUrl()).centerCrop().into(binding.ivTaskImage);
         }
     }

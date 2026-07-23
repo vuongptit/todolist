@@ -21,11 +21,9 @@
 
     <!-- Task lines decoration -->
     <path
-        android:fillColor="#FFFFFF"
-        android:pathData="M35,35 L55,35 Q57,35 57,37 L57,39 Q57,41 55,41 L35,41 Q33,41 33,39 L33,37 Q33,35 35,35Z"
-        android:fillAlpha="0.5" />
+        android:fillColor="#80FFFFFF"
+        android:pathData="M35,35 L55,35 Q57,35 57,37 L57,39 Q57,41 55,41 L35,41 Q33,41 33,39 L33,37 Q33,35 35,35Z" />
     <path
-        android:fillColor="#FFFFFF"
-        android:pathData="M35,80 L75,80 Q77,80 77,82 L77,84 Q77,86 75,86 L35,86 Q33,86 33,84 L33,82 Q33,80 35,80Z"
-        android:fillAlpha="0.5" />
+        android:fillColor="#80FFFFFF"
+        android:pathData="M35,80 L75,80 Q77,80 77,82 L77,84 Q77,86 75,86 L35,86 Q33,86 33,84 L33,82 Q33,80 35,80Z" />
 </vector>

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- activity_add_task.xml - High Contrast Light Mode (Efficient Velocity) -->
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_dark"
+    android:background="@color/background"
     android:fillViewport="true">
 
     <LinearLayout
@@ -17,15 +18,16 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/background_dark"
+            android:background="@color/background"
             app:navigationIcon="@drawable/ic_arrow_back"
+            app:navigationIconTint="@color/on_surface"
             app:title="Thêm Task"
-            app:titleTextColor="@color/white" />
+            app:titleTextColor="@color/on_surface" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#1AFFFFFF" />
+            android:background="@color/outline_variant" />
 
         <!-- Form Content -->
         <LinearLayout
@@ -42,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/task_title"
                 app:boxStrokeColor="@color/primary"
-                app:hintTextColor="@color/primary"
+                app:hintTextColor="@color/on_surface_variant"
                 app:boxCornerRadiusTopStart="12dp"
                 app:boxCornerRadiusTopEnd="12dp"
                 app:boxCornerRadiusBottomStart="12dp"
@@ -52,7 +54,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textCapSentences"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/on_surface"
+                    android:textSize="16sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Description -->
@@ -64,7 +67,7 @@
                 android:layout_marginTop="16dp"
                 android:hint="@string/task_description"
                 app:boxStrokeColor="@color/primary"
-                app:hintTextColor="@color/primary"
+                app:hintTextColor="@color/on_surface_variant"
                 app:boxCornerRadiusTopStart="12dp"
                 app:boxCornerRadiusTopEnd="12dp"
                 app:boxCornerRadiusBottomStart="12dp"
@@ -76,17 +79,19 @@
                     android:inputType="textMultiLine|textCapSentences"
                     android:minLines="3"
                     android:gravity="top"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/on_surface"
+                    android:textSize="15sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Category Spinner -->
+            <!-- Category Label -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/task_category"
-                android:textColor="#AAAAAA"
-                android:textSize="13sp" />
+                android:textColor="@color/on_surface"
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilCategory"
@@ -96,7 +101,7 @@
                 android:layout_marginTop="6dp"
                 android:hint="Chọn danh mục"
                 app:boxStrokeColor="@color/primary"
-                app:hintTextColor="@color/primary"
+                app:hintTextColor="@color/on_surface_variant"
                 app:boxCornerRadiusTopStart="12dp"
                 app:boxCornerRadiusTopEnd="12dp"
                 app:boxCornerRadiusBottomStart="12dp"
@@ -106,17 +111,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="none"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/on_surface"
+                    android:textSize="15sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Priority -->
+            <!-- Priority Label -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/task_priority"
-                android:textColor="#AAAAAA"
-                android:textSize="13sp" />
+                android:textColor="@color/on_surface"
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/chipGroupPriority"
@@ -132,8 +139,10 @@
                     android:layout_height="wrap_content"
                     android:text="🔴 Cao"
                     style="@style/Widget.Material3.Chip.Filter"
+                    app:chipCornerRadius="28dp"
                     app:chipBackgroundColor="#1AF44336"
-                    android:textColor="#F44336" />
+                    android:textColor="#BA1A1A"
+                    android:textStyle="bold" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipMedium"
@@ -141,9 +150,11 @@
                     android:layout_height="wrap_content"
                     android:text="🟠 Trung bình"
                     style="@style/Widget.Material3.Chip.Filter"
+                    app:chipCornerRadius="28dp"
                     android:checked="true"
                     app:chipBackgroundColor="#1AFF9800"
-                    android:textColor="#FF9800" />
+                    android:textColor="#D97706"
+                    android:textStyle="bold" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipLow"
@@ -151,28 +162,34 @@
                     android:layout_height="wrap_content"
                     android:text="🟢 Thấp"
                     style="@style/Widget.Material3.Chip.Filter"
+                    app:chipCornerRadius="28dp"
                     app:chipBackgroundColor="#1A4CAF50"
-                    android:textColor="#4CAF50" />
+                    android:textColor="#006D2C"
+                    android:textStyle="bold" />
             </com.google.android.material.chip.ChipGroup>
 
-            <!-- Deadline -->
+            <!-- Deadline Label -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/task_deadline"
-                android:textColor="#AAAAAA"
-                android:textSize="13sp" />
+                android:textColor="@color/on_surface"
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnSelectDeadline"
                 style="@style/Widget.Material3.Button.OutlinedButton"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_marginTop="8dp"
                 android:text="📅 Chọn ngày và giờ"
                 android:textColor="@color/primary"
-                app:strokeColor="@color/primary"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:strokeColor="@color/outline"
+                app:strokeWidth="1dp"
                 app:cornerRadius="12dp"
                 android:drawableStart="@drawable/ic_calendar"
                 app:iconTint="@color/primary" />
@@ -181,61 +198,77 @@
                 android:id="@+id/tvDeadlineValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="6dp"
                 android:text="Chưa chọn hạn chót"
-                android:textColor="#666666"
-                android:textSize="12sp" />
+                android:textColor="@color/on_surface"
+                android:textSize="13sp"
+                android:textStyle="bold" />
 
-            <!-- Reminder -->
+            <!-- Reminder Label -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/task_reminder"
-                android:textColor="#AAAAAA"
-                android:textSize="13sp" />
+                android:textColor="@color/on_surface"
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnSelectReminder"
                 style="@style/Widget.Material3.Button.OutlinedButton"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_marginTop="8dp"
                 android:text="🔔 Chọn thời gian nhắc nhở"
                 android:textColor="@color/primary"
-                app:strokeColor="@color/primary"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:strokeColor="@color/outline"
+                app:strokeWidth="1dp"
                 app:cornerRadius="12dp" />
 
             <TextView
                 android:id="@+id/tvReminderValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="6dp"
                 android:text="Chưa chọn thời gian nhắc nhở"
-                android:textColor="#666666"
-                android:textSize="12sp" />
+                android:textColor="@color/on_surface"
+                android:textSize="13sp"
+                android:textStyle="bold" />
 
-            <!-- Image Section -->
+            <!-- Image Label -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/task_image"
-                android:textColor="#AAAAAA"
-                android:textSize="13sp" />
+                android:textColor="@color/on_surface"
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
-            <!-- Image Preview -->
-            <ImageView
-                android:id="@+id/ivTaskImage"
+            <!-- Image Preview Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardTaskImage"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:background="@drawable/bg_card"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_image"
-                android:tint="#333333"
-                android:visibility="gone"
-                android:contentDescription="Task image preview" />
+                app:cardBackgroundColor="@color/surface_container_lowest"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="1dp"
+                app:strokeColor="@color/outline_variant"
+                app:strokeWidth="1dp">
+
+                <ImageView
+                    android:id="@+id/ivTaskImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_image"
+                    android:visibility="gone"
+                    android:contentDescription="Task image preview" />
+            </com.google.android.material.card.MaterialCardView>
 
             <!-- Image Buttons -->
             <LinearLayout
@@ -248,23 +281,25 @@
                     android:id="@+id/btnCamera"
                     style="@style/Widget.Material3.Button.OutlinedButton"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
                     android:layout_weight="1"
                     android:layout_marginEnd="8dp"
                     android:text="📷 Camera"
                     android:textColor="@color/primary"
-                    app:strokeColor="@color/primary"
+                    android:textStyle="bold"
+                    app:strokeColor="@color/outline"
                     app:cornerRadius="12dp" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnGallery"
                     style="@style/Widget.Material3.Button.OutlinedButton"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
                     android:layout_weight="1"
                     android:text="🖼️ Thư viện"
                     android:textColor="@color/primary"
-                    app:strokeColor="@color/primary"
+                    android:textStyle="bold"
+                    app:strokeColor="@color/outline"
                     app:cornerRadius="12dp" />
             </LinearLayout>
 
@@ -279,20 +314,19 @@
                 android:progressTint="@color/primary"
                 android:visibility="gone" />
 
-            <!-- Save Button -->
+            <!-- Save Button - Pill shape -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnSave"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="56dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginBottom="32dp"
                 android:text="@string/save_task"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:padding="14dp"
                 app:backgroundTint="@color/primary"
-                app:cornerRadius="12dp" />
+                app:cornerRadius="28dp" />
 
         </LinearLayout>
     </LinearLayout>

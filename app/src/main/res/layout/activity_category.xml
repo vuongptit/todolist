@@ -5,19 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/background_dark">
+    android:background="@color/background">
 
     <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/background_dark"
+        android:background="@color/background"
         app:navigationIcon="@drawable/ic_arrow_back"
         app:title="Danh mục"
-        app:titleTextColor="@color/white" />
+        app:titleTextColor="@color/on_surface" />
 
-    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#1AFFFFFF" />
+    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/outline_variant" />
 
     <!-- RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
@@ -42,7 +42,7 @@
             android:contentDescription="No categories" />
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
             android:layout_marginTop="16dp" android:text="Chưa có danh mục"
-            android:textColor="#666666" android:textSize="16sp" />
+            android:textColor="@color/on_surface_variant" android:textSize="16sp" />
     </LinearLayout>
 
     <!-- FAB -->
